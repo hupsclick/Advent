@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="author" content="Hupsclick">
+  <meta name="publisher" content="Hupsclick">
+  <meta name="description" content="Hupsi Adventskalender – 24 Überraschungen für Kinder und Erwachsene">
+  <meta name="keywords" content="HUPSCLICK, ADVENT, ADVENTSKALENDER, Deutsch">
+  <meta name="copyright" content="Hupsclick">
+  <meta property="og:title" content="HUPSI Adventskalender">
+  <meta property="og:description" content="24 Überraschungen für Kinder und Erwachsene">
+  <meta property="og:type" content="website">
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b9d">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="HUPSI Advent">
+  <link rel="manifest" href="manifest.json">
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./assets/icon-512.png">
+  <link rel="apple-touch-icon" href="./assets/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon-192.png">
+  <link rel="shortcut icon" href="assets/icon.ico">
+  <title>Santa Hupsi</title>
+<style>
+/* So umgehst du die Sperre 🔒 🔓 ---  file:///D:/Html%20Programme/Santahupsi/index.html?test=1  --- */
+  :root {
+    --bg:light-dark(#0f8a5f,#145a32);     /* Seitenstart Hintergrund Farbe */
+    --bg-solid: #fff8f5;
+    --card-bg: light-dark(#0f8a5f,#145a32);   /* Gedichte Modal Fenster Hintergrund Farbe  #38a2ed  Hellblau */
+    --text: #2d2a32;
+    --text-soft: #ffffff;
+    --text-softi: #263238;
+    --text-softer: #7e071b;  /* Text Kopierrechte Schrift Farbe */
+    --text-softtimer: #edf2f5; /* Text Schrift Farbe von Verschwindet in */
+    --header-bg: #5e1914;  /* Seitenstart Obere Button Leiste Hintergrund Farbe */
+    --header-shadow: 0 4px 20px rgba(255,107,157,0.15);
+    --pink: #edf2f5;   /* Logo Schrift Farbe Oben Links Schneefarbe*/
+    --kaffeschließen: #7c0a02;   /* Hintergrundfarbe für Kaffee Schließen Button*/
+    --rot: #7c0a02;   /* Hintergrundfarbe für Hinweis Button Santa Hupsi */
+    --pink-dark: #ffdab9;  /* Textfarbe für Kaffee Modal Fenster Danke, dass du meine App verwendest!*/
+    --yellow: #ffd166;
+    --mint: #06d6a0;
+    --sky: #4cc9f0;
+    --purple: #466900;   /* Logo Schrift Farbe Oben Links Grün*/
+    --purplem: #171717;   /* Dark Mode Button Hintergrund Farbe */
+    --orange: #ff9f1c;
+    --shadow: 0 12px 30px rgba(0,0,0,0.12);
+    --radius: 24px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --festive-glow: 0 0 0 10px rgba(255,107,157,0.18);
+    --door-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    --advent: #7e071b;  /* Adventskalender Schrift Farbe Rot */
+    --peachpuff: #ffdab9;  /* Spielanleitung Schrift Farbe Hell Gelb */
+    --coffee-modal-orange: #bf360c;
+  }
+  /* Dark Mode – ebenfalls ganzjährig stimmungsvoll */
+  [data-theme="dark"] {
+    --bg: linear-gradient(160deg, #1a1520 0%, #12181f 50%, #1a1a12 100%);
+    --bg-solid: #12151a;
+    --card-bg: #1e242c;
+    --text: #f0eef5;
+    --text-soft: #a8a3b3;
+    --text-softtimer: #a8a3b3;
+    --header-bg: #1a1e26;
+    --header-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    --pink: #ff7bab;
+    --pink-dark:#ffdab9;
+    --yellow: #ffe08a;
+    --mint: #2ee6b0;
+    --sky: #6ad9ff;
+    --purple: #b07aff;
+    --purplem: #171717;   /* Dark Mode Button Hintergrund Farbe */
+    --orange: #ffb347;
+    --shadow: 0 12px 30px rgba(0,0,0,0.45);
+    --festive-glow: 0 0 0 10px rgba(255,123,171,0.22);
+    --door-shadow: 0 3px 12px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+  /* ===== Header ===== */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: var(--header-bg);
+    box-shadow: var(--header-shadow);
+    position: relative;
+    z-index: 50;
+    transition: background 0.35s ease;
+  }
+  .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; color: #edf2f5;}
+  .logo span {
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .header-actions { display: flex; gap: 8px; flex-wrap: nowrap; justify-content: flex-end; }
+  .header-btn {
+    height: 36px;
+    padding: 0 13px;
+    border: none;
+    border-radius: 999px;
+    font-family: var(--font);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    white-space: nowrap;
+  }
+  .header-btn:active { transform: scale(0.96); }
+  .btn-info   { background: var(--sky); color: #fff; }
+  .btn-coffee { background: var(--yellow); color: #515354; }
+  .btn-theme  { background: var(--purplem); color: #76797a; }
+  /* ===== Main ===== */
+  .page-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 16px 28px;
+    gap: 20px;
+  }
+  .intro { text-align: center; max-width: 380px; color: var(--advent);}
+  .intro h1 { font-size: clamp(1.55rem, 5.5vw, 2rem); font-weight: 800; margin-bottom: 6px;
+   text-shadow: -2px -2px 1px #edf0ff, 2px 2px 2px #0b6623;
+   display: flex; align-items: center; justify-content: center; gap: 0.25em; flex-wrap: wrap; }
+  .intro h1 span {
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .intro p { font-size: 0.92rem; color: var(--text-softi); line-height: 1.45; }
+  [data-theme="dark"] .intro p { color: var(--text-soft); }
+  /* Flackernde Kerze (SVG) */
+  .candle-svg {
+    display: inline-block;
+    width: 1.15em;
+    height: 1.35em;
+	vertical-align: 0;  /* Kerze hier höher oder tiefer setzen */
+    transform: translateY(-8px);   /* negativer Wert = nach oben */   
+    overflow: visible;
+  }
+  .candle-flame {
+    transform-origin: 12px 18px;
+    animation: candleFlicker 0.9s ease-in-out infinite alternate;
+  }
+  .candle-flame-inner {
+    transform-origin: 12px 20px;
+    animation: candleFlickerInner 0.7s ease-in-out infinite alternate;
+  }
+  .candle-glow {
+    animation: candleGlow 1.1s ease-in-out infinite alternate;
+  }
+  @keyframes candleFlicker {
+    0%   { transform: scaleY(1) scaleX(1) rotate(-1deg); opacity: 1; }
+    30%  { transform: scaleY(0.92) scaleX(1.05) rotate(1.5deg); opacity: 0.92; }
+    60%  { transform: scaleY(1.05) scaleX(0.95) rotate(-0.8deg); opacity: 1; }
+    100% { transform: scaleY(0.97) scaleX(1.03) rotate(1deg); opacity: 0.95; }
+  }
+  @keyframes candleFlickerInner {
+    0%   { transform: scaleY(1) scaleX(1); opacity: 0.95; }
+    40%  { transform: scaleY(0.88) scaleX(1.1); opacity: 0.85; }
+    100% { transform: scaleY(1.02) scaleX(0.96); opacity: 1; }
+  }
+  @keyframes candleGlow {
+    0%   { opacity: 0.35; }
+    100% { opacity: 0.55; }
+  }
+  /* Hupsi Button */
+  .hupsi-btn {
+    width: min(300px, 56vw);
+    height: min(300px, 56vw);
+    border: 6px solid rgba(255,255,255,0.85);
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--pink), var(--purple));
+    box-shadow: var(--shadow), var(--festive-glow);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hupsi-btn:hover { transform: scale(1.07); }
+  .hupsi-btn:active { transform: scale(0.96); }
+  .hupsi-btn img { width: 97%; height: 97%; object-fit: contain; pointer-events: none; user-select: none; }
+  .hupsi-btn.waiting { animation: bounce 0.9s ease-in-out infinite; }
+  @keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+  .status { font-size: 0.9rem; font-weight: 700; color: var(--text-soft); min-height: 1.3em; text-align: center; }
+  .status.active { color: var(--pink-dark); }
+  /* ===== Türchen-Raster ===== */
+  .doors {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    width: min(92vw, 340px);
+  }
+  .door {
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--card-bg);
+    background-size: 100%;    /* ===== Eigene Bilder Größe anpassen ===== */
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: #fff;
+    font-family: var(--font);
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: pointer;
+    box-shadow: var(--door-shadow);
+    transition: transform 0.15s, box-shadow 0.15s;
+    /* Für eigene Bilder in den Buttons */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 4px;
+  }
+  .door:active { transform: scale(0.94); }
+  .door.today  { background-color: var(--pink); box-shadow: 0 0 0 3px rgba(255,107,157,0.35); }
+  .door.opened { background-color: var(--mint); }
+  .door.locked { opacity: 0.9; cursor: not-allowed; }
+  /* Nummer – immer klar sichtbar (Badge unten rechts, wenn Bild vorhanden) */
+  .door .door-num {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    min-width: 1.15em;
+    height: 1.15em;
+    padding: 0 3px;
+    border-radius: 6px;
+    background: transparent;  /* ===== Hintergrund Farbe der Zahlen 1-24 ===== */
+    font-size: 2.3rem;
+    font-weight: 400;
+    line-height: 1.15em;
+    text-align: center;
+    color: transparent;    /* ===== Farbe der Zahlen 1-24  #002601 ===== */
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* Wenn KEIN Bild: Nummer groß und zentriert, ohne dunklen Badge */
+  .door.no-img .door-num {
+    position: static;
+    background: transparent;
+    font-size: 1.95rem;
+    min-width: auto;
+    height: auto;
+    padding: 0;
+    line-height: 1;
+  }
+  /* ===== Aufgaben-Karte ===== */
+  .card-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(20,18,25,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .card-overlay.is-open { display: flex; }
+  .task-card {
+    width: min(94vw, 400px);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    padding: 26px 22px 22px;
+    animation: popIn 0.35s cubic-bezier(0.34,1.4,0.64,1) both;
+    color: var(--text);
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.85) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .task-label {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--rot), var(--pink));
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .task-text {
+    font-size: clamp(1.03rem, 4.2vw, 1.2rem);
+    text-align: left;   /* ===== Gedichte Modal Text ausrichten ===== */
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    white-space: pre-line;
+	color: #fff;   /* gewünschte Farbe hier eintragen */
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  }
+  .task-timer { font-size: 0.85rem; color: var(--text-softtimer); margin-bottom: 18px; }
+  .task-timer span { font-weight: 800; color: var(--pink-dark); }
+  .task-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .task-btn {
+    height: 44px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 999px;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.15s;
+  }
+  .task-btn:active { transform: scale(0.96); }
+  .btn-done { background: var(--mint); color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);}
+  
+/* =========================================
+   STERN - GRUNDEINSTELLUNG
+   ========================================= */
+.star {
+    position: fixed;
+    z-index: 200;
+    line-height: 1;
+    margin: 0;
+    animation: starBlink 1.2s ease-in-out infinite;
+    text-shadow:
+        0 0 30px #ffd700,
+        0 0 60px #ffaa00,
+        0 0 90px #ff8800;
+}
+/* =========================================
+   BLINKEN
+   ========================================= */
+@keyframes starBlink {
+    0%, 100% {
+        opacity: 0.5;
+        text-shadow:
+            0 0 20px #ffd700;
+    }
+    50% {
+        opacity: 1;
+        text-shadow:
+            0 0 30px #ffd700,
+            0 0 60px #ffaa00,
+            0 0 100px #ff8800;
+    }
+}
+/* =========================================
+   1. HANDY HOCHFORMAT
+   ========================================= */
+/* @media screen and (max-width: 600px) and (orientation: portrait) {
+    .star {
+        top: calc(350px + env(safe-area-inset-top));
+        left: 20%;
+        transform: translateX(-50%);
+        font-size: 36px;
+    }
+}*/
+/* =========================================
+   2. HANDY QUERFORMAT
+   Bis 900px Bildschirmhöhe/-breite
+   ========================================= */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .star {
+    display: none;                    /* Stern ausblenden */
+  }
+  .status {
+    animation: statusBlink 1.2s ease-in-out infinite; color:#7c0a02;
+	text-shadow: -2px -2px 1px #edf0ff, 2px 2px 2px #0b6623;
+  }
+}
+@keyframes statusBlink {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+/* =========================================
+   3. MITTLERER BILDSCHIRM
+   1366 × 768
+   ========================================= */
+@media screen and (min-width: 901px) and (max-width: 1400px) {
+    .star {
+        top: 470px;
+        left: 39%;
+        transform: translateX(-50%);
+        font-size: 44px;
+    }
+}
+/* =========================================
+   4. GROSSER BILDSCHIRM
+   ========================================= */
+@media screen and (min-width: 1401px) {
+    .star {
+        top: 490px;
+        left: 42%;
+        transform: translateX(-50%);
+        font-size: 48px;
+    }
+}
+		
+  /* ===== Footer ===== */
+  footer { text-align: center; padding: 10px 16px 16px; font-size: 0.7rem; letter-spacing: 4px;
+  color: var(--text-softer); text-shadow: -1px -1px 1px #edf0ff, 1px 1px 1px #0b6623;opacity: 0.95; }
+  /* ===== Geschichten-Button (zwischen Türen und Footer) ===== */
+  .story-btn-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 8px 16px 4px;
+  }
+  .story-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s;
+  }
+  .story-btn:hover { transform: scale(1.06); }
+  .story-btn:active { transform: scale(0.96); }
+  .story-btn img {
+    display: block;
+    width: min(72px, 12vw);    /* ===== Bild Größe von assets/geschichte.png festlegen ===== */
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  /* ===== Modals ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    display: none;
+    overflow-y: auto;
+    padding: 20px;
+    background: var(--card-bg);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+ .bottom-snow {
+  display: block;
+  position: fixed;
+  top: 120px;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  vertical-align: bottom;
+  z-index: -10;
+}
+ 
+  .modal-overlay.is-open { display: flex; }
+  .modal-card {
+    width: min(92vw, 400px);
+    margin: auto;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    overflow: hidden;
+    animation: popIn 0.3s cubic-bezier(0.34,1.4,0.64,1) both;
+    color: var(--text);
+  }
+  .modal-header {
+    padding: 22px 20px 16px;
+    text-align: center;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+  }
+  .modal-title { font-size: 1.3rem; font-weight: 400; color: var(--peachpuff);  }
+  .modal-title span {
+    background: linear-gradient(130deg, var(--peachpuff), var(--text-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .modal-subtitle { margin-top: 8px; font-size: 0.8rem; color: var(--peachpuff);  }
+  .modal-content { padding: 20px 22px 16px; text-align: center; }
+  .modal-content p { font-size: 0.9rem; line-height: 1.55; color: var(--text-soft); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+  .modal-content ul {
+    text-align: left;
+    margin: 12px 0 0;
+    padding-left: 18px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--text-soft);  
+  }
+  
+.coffee-modal-email {
+  display: block;
+  color: var(--coffee-modal-orange);
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+  .modal-content li { margin-bottom: 6px; }
+  .modal-footer { display: flex; justify-content: center; padding: 10px 20px 18px; }
+  .modal-close {
+    height: 40px;
+    padding: 0 26px;
+    border: none;
+    border-radius: 999px;
+    background: var(--kaffeschließen);
+    color: #fff;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .coffee-thanks { display: block; margin-top: 8px; color: var(--pink-dark); font-weight: 700; font-size: 1rem; }
+  .coffee-divider {
+    height: 2px;
+    margin: 16px 0 12px;
+    background: linear-gradient(90deg, transparent, var(--pink), transparent);
+    opacity: 0.4;
+  }
+  .coffee-support { margin-bottom: 12px; font-size: 0.85rem; font-weight: 700; color: var(--orange); }
+  .paypal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: min(100%, 250px);
+    min-height: 46px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #0875da, #0754aa);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0,70,170,0.25);
+  }
+  .paypal-logo-pay { color: #62c6ff; }
+  .paypal-hint { margin-top: 12px; font-size: 0.78rem; color: var(--text-soft); }
+  /* ===== Glas-Modal für die gesamte Geschichte ===== */
+  .story-modal-card {
+    width: min(94vw, 440px);
+    margin: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    color: #fff;
+    animation: popIn 0.35s cubic-bezier(0.34,1.4,0.64,1) both;
+  }
+  [data-theme="dark"] .story-modal-card {
+    background: rgba(30, 36, 44, 0.55);
+  }
+  .story-modal-header {
+    padding: 20px 18px 12px;
+    text-align: center;
+  }
+  .story-modal-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffe8a3;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+  .story-modal-subtitle {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.85);
+  }
+  .story-modal-content {
+    padding: 8px 18px 12px;
+  }
+  .story-chapter {
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    text-align: center;
+  }
+  .story-chapter:last-of-type { border-bottom: none; }
+  .story-day {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ffcc66;
+    margin-bottom: 8px;
+  }
+  .story-chapter-img {
+    display: block;
+    width: min(100%, 160px);    /* ===== Die 24 Bildergöße im geöffneten Butto geschichte.png  anpassen ===== */
+    height: auto;
+    margin: 0 auto 10px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    object-fit: cover;
+  }
+  .story-text {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    white-space: pre-line;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    text-align: left;   /* ===== Geschichte Modal Text ausrichten ===== */
+  }
+  .story-modal-footer {
+    display: flex;
+    justify-content: center;
+    padding: 10px 18px 18px;
+  }
+
+  /* ===== Sanfter Schneefall (nur Dark Mode) ===== */
+  #snow-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  [data-theme="dark"] #snow-container {
+    opacity: 1;
+  }
+  .snowflake {
+    position: absolute;
+    top: -20px;
+    color: #fff;
+    font-size: 1em;
+    line-height: 1;
+    opacity: 0.75;
+    text-shadow: 0 0 6px rgba(255,255,255,0.6);
+    user-select: none;
+    will-change: transform;
+    animation-name: snowfall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  @keyframes snowfall {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+      opacity: 0;
+    }
+    8% {
+      opacity: 0.75;
+    }
+    92% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(110vh) translateX(var(--drift, 20px)) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  /* Responsive */
+  /* =========================================
+   1. HANDY HOCHFORMAT
+   ========================================= */
+@media screen and (max-width: 600px) and (orientation: portrait) {
+    .logo {
+        font-size: 13px;
+    }
+    .star {
+        top: calc(383px + env(safe-area-inset-top));
+        left: 9%;
+        transform: translateX(-50%);
+        font-size: 36px;
+    }
+    .bottom-snow {
+     top: 590px; }
+}
+  @media (max-height: 540px) and (orientation: landscape) {
+    .bottom-snow {
+     top: 3px; }
+    .page-body { padding: 10px 16px; gap: 12px; }
+    .hupsi-btn { width: min(120px, 24vw); height: min(120px, 24vw); }
+    .intro h1 { font-size: 1.25rem; }
+    .intro p { font-size: 0.82rem; }
+}
+
+ @media (max-width: 380px) {
+  .logo { font-size: 1.1rem; }
+  .header-btn {
+    padding: 0 9px;
+    font-size: 0.64rem;
+    height: 32px;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Santa <span>Hupsi</span></div>
+  <div class="header-actions">
+    <button id="themeToggle" class="header-btn btn-theme" type="button">🌙 Dark</button>
+    <button id="infoTrigger" class="header-btn btn-info" type="button">ℹ️ Info</button>
+    <button id="coffeeTrigger" class="header-btn btn-coffee" type="button">☕ Kaffee</button>
+  </div>
+</header>
+<div class="page-body">
+  <div class="intro">
+    <h1>Adventskalender
+      <svg class="candle-svg" viewBox="0 0 24 32" aria-hidden="true" focusable="false">
+        <!-- sanfter Schein hinter der Flamme -->
+        <ellipse class="candle-glow" cx="12" cy="9" rx="7" ry="8" fill="#ffcc66" opacity="0.4"/>
+        <!-- äußere Flamme -->
+        <path class="candle-flame" d="M12 2 C9.5 7 7 10 7 14 C7 17.5 9.2 20 12 20 C14.8 20 17 17.5 17 14 C17 10 14.5 7 12 2 Z" fill="#ff9a3c"/>
+        <!-- innere Flamme (heller) -->
+        <path class="candle-flame-inner" d="M12 6 C10.6 9.5 9.5 11.5 9.5 14 C9.5 16.2 10.7 17.8 12 17.8 C13.3 17.8 14.5 16.2 14.5 14 C14.5 11.5 13.4 9.5 12 6 Z" fill="#ffe566"/>
+        <!-- Docht -->
+        <rect x="11.2" y="19.5" width="1.6" height="3.5" rx="0.6" fill="#3a2a1a"/>
+        <!-- Kerzenkörper -->
+        <rect x="8" y="22.5" width="8" height="15.5" rx="1.2" fill="#f5f0e6"/>
+        <!-- Wachs-Tropfen -->
+        <ellipse cx="9.2" cy="23.2" rx="1.1" ry="0.9" fill="#e8e0d0"/>
+        <!-- Unterer Schatten / Sockel-Andeutung -->
+        <rect x="7.5" y="30.2" width="9" height="1.3" rx="0.5" fill="#d4cbb8"/>
+      </svg>
+    </h1>
+    <p>Tippe auf Santa Hupsi und öffne das heutige Türchen!</p>
+  </div>
+  <button id="hupsiBtn" class="hupsi-btn" type="button" title="Hupsi drücken">
+    <img src="assets/santahupsi.png" alt="Hupsi">
+  </button>
+  <div id="status" class="status">Bereit zum Öffnen</div>
+  <div id="doors" class="doors" aria-label="Türchen 1 bis 24"></div>
+</div>
+        <!-- Stern -->
+        <div class="star">⭐</div>
+<!-- Gedichte-Button (zwischen Türen und Footer) -->
+<div class="story-btn-wrap">
+  <button id="storyTrigger" class="story-btn" type="button" title="Weihnachtsgeschichte lesen">
+    <img src="assets/geschichte.png" alt="Geschichte">
+  </button>
+</div>
+		
+<!-- Ganz unten auf der Seite einfügen (nach dem Footer oder statt des Footers) -->
+<img src="assets/landschaft3.png" alt="" class="bottom-snow">
+<footer>© HUPSCLICK Manfred Häcker</footer>
+<!-- Türchen-Karte -->
+<div id="cardOverlay" class="card-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="task-card">
+    <div id="taskLabel" class="task-label">Türchen</div>
+    <div id="taskText" class="task-text">…</div>
+    <div class="task-timer">Verschwindet in <span id="timerDisplay">90</span> Sekunden</div>
+    <div class="task-actions">
+      <button id="taskClose" class="task-btn btn-done" type="button">✓ Fertig</button>
+    </div>
+  </div>
+</div>
+<!-- Info Modal -->
+<div id="infoModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2 class="modal-title">Spielanleitung</h2>
+      <div class="modal-subtitle">So funktioniert der Santa Hupsi Adventskalender</div>
+    </div>
+    <div class="modal-content">
+      <p>Ein fröhlicher Adventskalender für die ganze Familie!</p>
+      <ul>
+        <li>Vom 1. bis 24. Dezember wartet jeden Tag ein neues Türchen.</li>
+        <li>Tippe auf den großen Santa Hups-Button, um das heutige Türchen zu öffnen.</li>
+        <li>Mit den Zahlen darunter kannst du bereits geöffnete Türchen noch einmal ansehen.</li>
+        <li>Die Karte verschwindet nach ca. 90 Sekunden von selbst oder mit Button „Fertig“ beenden.</li>
+        <li>Mit dem Dark-Mode-Button kannst du den Hintergrund dunkler machen. Es wartet auch eine kleine Überraschung auf dich.</li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <button id="infoClose" class="modal-close" type="button">Alles klar!</button>
+    </div>
+  </div>
+</div>
+<!-- Kaffee Modal -->
+<div id="coffeeModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2 class="modal-title">Santa <span>Hupsi</span></h2>
+      <div class="modal-subtitle">Eine private App von Hupsclick</div>
+	  	  <span class="coffee-modal-email">regiemail@gmx.de</span>
+    </div>
+    <div class="modal-content">
+      <p>
+        Santa Hupsi überträgt keine Daten an mich als Entwickler.
+        Dennoch kann ich keine Verantwortung für Datenverarbeitungen übernehmen,
+        die durch das verwendete Gerät, den Browser, das Betriebssystem oder
+        installierte Drittanbieter-Dienste erfolgen.
+        Die Nutzung erfolgt auf eigene Verantwortung.
+        <span class="coffee-thanks">Danke, dass du meine App verwendest!</span>
+      </p>
+      <div class="coffee-divider"></div>
+      <div class="coffee-support">☕ Hat dir die App gefallen?</div>
+      <a class="paypal-btn" href="https://www.paypal.me/ManfredKaffee" target="_blank" rel="noopener noreferrer">
+        <span><span class="paypal-logo-pay">Pay</span>Pal</span>
+        Kauf mir einen Kaffee
+      </a>
+      <p class="paypal-hint">Jeder Kaffee hilft bei neuen Projekten ✦</p>
+    </div>
+    <div class="modal-footer">
+      <button id="coffeeClose" class="modal-close" type="button">Schließen</button>
+    </div>
+  </div>
+</div>
+<!-- Geschichte Modal (Glas-Effekt) – jedes Türchen mit eigenem Bild -->
+<div id="storyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="story-modal-card">
+    <div class="story-modal-header">
+      <h2 class="story-modal-title">Die Weihnachtsgeschichte von Santa Hupsi</h2>
+      <div class="story-modal-subtitle">Eine zauberhafte Geschichte zum Lesen</div>
+    </div>
+    <div id="storyContent" class="story-modal-content">
+      <!-- wird per JavaScript gefüllt – jedes Kapitel mit Bild assets/bild1.png … bild24.png -->
+    </div>
+    <div class="story-modal-footer">
+      <button id="storyClose" class="modal-close" type="button">Schließen</button>
+    </div>
+  </div>
+</div>
+<!-- Schneeflocken-Container (nur im Dark Mode sichtbar) -->
+<div id="snow-container" aria-hidden="true"></div>
+<script>
+"use strict";
+/* ========== Türchen (24 Stück) – hier einfach Texte ändern und  Eigene kleine Bilder in den Buttons einfügen ==========*/
+const DOORS = [
+  { cat: "Gedicht", text: "Der Weihnachtsmann steht bereit.\nBald beginnt die Weihnachtszeit.\nOb Groß, ob Klein, ob nah, ob fern,\nder Weihnachtsmann hat euch gern! \n", img: "assets/doors/1a.png" },
+  { cat: "Gedicht", text: "Lieber guter Weihnachtsmann,\nfür dich fing ich zu dichten an.\nDoch leider ist dies ziemlich schwer,\ndrum musste etwas anderes her, \nDa hab ich dann mein Herz gefragt, \nund dies hat es zu mir gesagt: \n„Weihnachtsmann, ich hab dich lieb. \nUnd Dankeschön, dass es dich gib!“", img: "assets/doors/2a.png" },
+  { cat: "Gedicht", text: "Ich frage mich …\n\nWenn an kalten Wintertagen \nHund und Katz sich nach draußen wagen\nmit Kleidern, Lichtern, Schmuck behängt, \nwer uns zu diesem Treiben drängt.\n\nWenn Nordmanntannen plötzlich schwitzen \nweil sie zu nah am Ofen sitzen, \nmit bunten Kugeln dicht bestückt, \nwem dieser Streich ist wohl geglückt? \n\nWenn Menschen nur noch rotieren, \nvor lauter Arbeit den Verstand verlieren, \nwenn sie kochen, backen und putzen, \nwem soll das alles eigentlich nutzen? \n\nUnd wenn der Stress sich verbreitet, \ndie ganze Sippschaft mit dir streitet, \nhier und da dich kritisiert, \nwer sich wohl darüber amüsiert? \n\nIch sag euch, wer all dies vollbringt, \nwer uns in all das Chaos zwingt, \ndass die Besinnlichkeit verreckt: \nEs ist das Christkind, das dahintersteckt!", img: "assets/doors/3a.png" },
+  { cat: "Gedicht", text: "Lieber guter Weihnachtsmann, \nich bin noch klein, doch irgendwann \nwerd ich groß, du wirst schon seh’n, \ndann kannst du in Rente geh’n. \n\nUnd wenn du bist dazu bereit, \nbeginnt für mich die Weihnachtszeit. \nDich mit Gaben zu beschenken \nUnd an jedes Kind zu denken.", img: "assets/doors/4a.png" },
+  { cat: "Gedicht", text: "Hallo, lieber Nikolaus, \nheut stell ich meine Stiefel raus. \nHabe sie ganz blank geputzt, \ndenn sie waren sehr verschmutzt. \nUnd du freust dich sicherlich, \nwenn ich dir sag: Ich denk an dich!", img: "assets/doors/5a.png" },
+  { cat: "Gedicht", text: "Zwei Kerzen brennen heut ganz sacht,\nAdvent, Advent, in stiller Nacht.\nDie Zeit scheint plötzlich still zu steh’n,\nwenn Herzen in ihr Hoffnung seh’n.\n\nIhr sanfter Schein ist mehr als Licht, \nein Zauber, der die Ängste bricht. \nAdvent, Advent, du schöne Zeit, \nso manches Wunder hältst du bereit.", img: "assets/doors/6a.png" },
+  { cat: "Gedicht", text: "Lieber guter Weihnachtsmann, \nschau mich bitte einmal an. \nIch habe mich ganz schick gemacht \nund ein Geschenk dir mitgebracht. \n\nEs ist ein Gedicht, und das geht so: \nVom langen Sitzen schmerzt mein Po. \nDoch dass du da bist, find ich toll, \nauch wenn ich immer brav sein soll.", img: "assets/doors/7a.png" },
+  { cat: "Gedicht", text: "Weihnachtsmann, du alter Knabe,\nschenk mir eine kleine Gabe.\nSchenk mir einen Weihnachtsmann,\nmit dem ich auch mal knuddeln kann.", img: "assets/doors/8a.png" },
+  { cat: "Gedicht", text: "Lieber guter Weihnachtsmann,\nda ich dich gut leiden kann,\ntrage ich dir nun was vor,\nwas ganz gewiss erfreut dein Ohr. \n\nDer Weihnachtsmann ist eine Wucht, \nverteilt so manche süße Frucht, \nbringt Gaben und noch vieles mehr, \ndrum lieben wir dich alle sehr.", img: "assets/doors/9a.png" },
+  { cat: "Gedicht", text: "Eine etwas andere Weihnachtsmann-Huldigung\n\nWeihnachtsmann, du lieber Netter,\nalter Greis und kleiner Fetter,\nGeschenkebringer, Schürzenjäger, \ncoole Socke, Lumpenträger, \nGlockenschwinger, kleiner Rocker, \nRentierfreund und Stubenhocker, \nVagabund und Fröhlichmann –\n\nIch hab dich lieb, du blöder Weihnachtsmann!", img: "assets/doors/10a.png" },
+  { cat: "Gedicht", text: "Alle Jahre wieder \nhör ich zur Weihnachtszeit\ndie altbekannten Lieder, \nin denen es noch schneit. \n\nAlle Jahre wieder \nreist die Verwandtschaft an \nund singt auch die Lieder, \nobwohl es keiner kann. \n\nAlle Jahre wieder \ngibt's Gänsebraten fein, \ndann stopfen sie wie Biber \nalles in sich rein. \n\nAlle Jahre wieder \ngibt's Geschrei und Radau, \nso manches Zimmer wieder \nschaut dann aus wie Sau. \n\nAlle Jahre wieder \nund das find ich ganz toll, \nkommt die Weihnacht wieder, \nso wie es auch sein soll.", img: "assets/doors/11a.png" },
+  { cat: "Gedicht", text: "Weihnachtliche Fürsorge \n\nWeihnachtsmann, ich wünsche mir \neine Rolle Klopapier.\nFür den Schneemann vor dem Haus, \ndenn der schaut echt Sch…e aus. \n\nKlingt mein Wunsch auch sehr banal, \nso denk ich mir: Ist doch egal! \nIn ein paar Tagen ist er futsch. \nFrohe Weihnachten und guten Rutsch!", img: "assets/doors/12a.png" },
+  { cat: "Gedicht", text: "Wer kommt denn da zur Weihnachtszeit?“ \n\nDas Weihnachtsfest ist voll im Gange, \ndoch plötzlich wird mir richtig bange. \nDenn dafür gibt es einen Grund, \nder wiegt wohl an die hundert Pfund, \nist meistens auch noch froh gelaunt, \nbeherrscht perfekt den Ho-ho-Sound, \nund schmeißt mit Gaben nur so rum, \nnimmt uns Kindern gar nichts krumm. \nEr trägt jedes Jahr dasselbe Kleid \nund kommt nur zur Weihnachtszeit. \n\nNa, wisst ihr alle, wer das ist, \nder uns zur Weihnachtszeit nicht vergisst? \nDann sagt es laut, damit ich's hören kann: \nEs ist der … liebe Weihnachtsmann!", img: "assets/doors/13a.png" },
+  { cat: "Gedicht", text: "Nichts für schwache Eltern \n\nWeihnachtsmann, ich halt mich kurz,\nvor meiner Tür, da steht ein Furz,\nder dir zu Ehren darauf besteht, \ndass nur er um deine Nase weht. \n\nUnd wenn du ihn gewähren lässt, \nwird schöner noch das Weihnachtsfest, \nweil ein jeder darüber herzlich lacht \nund sich denkt: \n„Wer hat sich diesen Müll nur ausgedacht?“", img: "assets/doors/14a.png" },  
+  { cat: "Gedicht", text: "Weihnachtsmann, ich bin noch klein\nund musste längst im Bett schon sein.\nDrum gib mir ganz schnell mein Geschenk,\ndamit ich in meinem Traum an dich denk.", img: "assets/doors/15a.png" },
+  { cat: "Gedicht", text: "Der Tannenbaum \n\n„Ein Tannenbaum stand im Walde\nund sprach so vor sich hin:\n„Ach, hätt ich doch ein Plätzchen, \nwo ich willkommen bin! \nHier stehen ja nur Tannen, \ndie sind zwar wunderschön, \ndoch leider hat uns keiner \nzuvor schon mal gesehn.“ \n\nKaum war sein Wunsch gesprochen, \nda stand vor ihm ein Mann, \nder schaute ganz verwundert \nund sah ihn lange an. \nDann sprach er zu der Tanne: \n„Du bist ja eine Pracht! \nIch nehme dich mit nach Hause, \nzur heil'gen Weihnachtsnacht.“ \n\nZu Hause angekommen, \nschmücke er den Baum \nmit Kugeln und mit Lichtern - \nein wahrer Weihnachtstraum. \nDie Tanne aber dachte: \n„Was hab ich nur getan? \nIm Wald war ich doch glücklich, \nnun bin ich Weihnachtskram!“", img: "assets/doors/16a.png" },
+  { cat: "Gedicht", text: "Der Weihnachtsmann \n\nOb im Hellen oder Dunkeln, \nob mit Bums und viel Krawall, \nob die Augensterne funkeln – \nman erkennt ihn überall. \n\nOb wir blühen oder reifen, \nob wir arm sind oder reich, \nob wir um die Häuser schleichen – \ner verzeiht uns jeden Streich.\n\nOb ein Pulli oder Socken, \nob für die Dritten Kukident, \nob wir durch das Leben rocken, \nvon Herzen kommt stets sein Geschenk.", img: "assets/doors/17a.png" },
+  { cat: "Gedicht", text: "Lieber guter Weihnachtsmann, \ndu weißt, dass ich auch brav sein kann. \nDoch wär ich brav das ganze Jahr, \nwär ich ein Engel und nicht da. \nUnd du, mein lieber Weihnachtsmann, \nwärst ohne Job – und was wär dann? \nDaheim wärst du bei deiner Frau, \nund dass sie nervt, weißt du genau. \nDrum sei ein lieber Weihnachtsmann \nund fang schon mal zu sparen an \nfür meine Wünsche, groß und klein. \nDann werd ich auch kein Engel sein.", img: "assets/doors/18a.png" },
+  { cat: "Gedicht", text: "Der Weihnachtsmann ist ein Netter,\nwohlgeformter, ein dicker Fetter,\nalter, grauer, weiser Mann,\nden ich ganz gut leiden kann.", img: "assets/doors/19a.png" },
+  { cat: "Gedicht", text: "Weihnachtsmann, bist du der Echte,\nder Weise und der Gerechte,\nder jedem Kind etwas bringt, \nvon dem man in Liedern singt? \n\nBist du der, der so herzlich lacht, \nder mit dem Schlitten fliegt durch die Nacht, \nder sich durch den Schornstein presst, \nder sich Kakao und Kekse schmecken lässt? \n\nDer unterm Weihnachtsbaum die Gaben legt, \nder so viele Kinderherzen bewegt, \nder immer weiß, wer brav gewesen ist, \nund kein Kind auf dieser Welt vergisst? \n\nBis du der, der heut vor mir steht, \num den sich alles heute dreht? \nDer Echte, lieber guter Weihnachtsmann, \noder bist du nur ein Onkel von nebenan? \n\nIch sage dir wer du für mich bist, \nein Freund, dem Hoffnung und Liebe wichtig ist. \nUnd darauf kommt es schließlich an. \nIch wünsche dir: \nFrohe Weihnacht, lieber guter Weihnachtsmann!", img: "assets/doors/20a.png" },
+  { cat: "Gedicht", text: "Wie viele Lichter, hell und bund, \nleuchten in der heil'gen Nacht.\nWie viel Hoffnung in dieser Stund\nhat die Weihnachtszeit in uns entfacht. \nWie viel Liebe erreicht die Welt, \nwenn wir glücklich sind. \nWie viele  Kinderaugen strahlen, \nwenn der Mensch sich neu besinnt.", img: "assets/doors/21a.png" },
+  { cat: "Gedicht", text: "Weihnachtsmann, ich möchte mich ja nicht beklagen,\naber warum muss ich dir ein Gedicht vortragen?\nGibt es denn gar nichts mehr umsonst?\nOder ist das dein Lohn, weil du zu uns kommst? \n\nSollte das tatsächlich so sein, \ndann trag ich dir gern vor meinen Reim. \nAuch wenn ich mich vielleicht blamier, \nvielleicht gefällt mein Reim ja auch dir. \n\nWeihnachtsmann, ich bitt dich sehr, \ngib mir mein Geschenk schnell her, \ndamit der Nächste kommen kann, \nlieber, guter Weihnachtsmann!“", img: "assets/doors/22a.png" },
+  { cat: "Gedicht", text: "Ein Weihnachtsrätsel \n\nSchlitten, Rentier, auf dem Dach, \ndurch den Schornstein kommt er sacht. \nWiegt hundertzwanzig Kilogramm – \nna, das ist … DER WEIHNACHTSMANN! \n\nAlter Mann und Mottenduft, \njedes Jahr dieselbe Kluft. \nGibt mit seiner Rute an \nna, das ist … DER WEIHNACHTSMANN! \n\nWeißer Bart und ungeschminkt, \ngerne fromme Lieder singt. \nÜberall und immer kann – \nna, das ist … DER WEIHNACHTSMANN! \n\nHat 'nen Bauch, der kugelrund, \nliebt alles, was  nicht Gesund. \nPlätzchen mampft er dann und wann – \nna, das ist … DER WEIHNACHTSMANN! \n\nIst das Jahr fast schon vorbei, \nist er wieder mit dabei. \nKlingelt, lacht und kommt heran – \nna, das ist … DER WEIHNACHTSMANN!“", img: "assets/doors/23a.png" },
+  { cat: "Gedicht", text: "Ho, ho, ho, es ist soweit,\nwer komm denn heut' zur Weihnachtszeit?  \nIhr alle wisst es sicherlich,\nvon welchen Helden spreche ich? \n\nIst es vielleicht der Osterhas'? \nDas Rentier mit der roten Nas'? \nVielleicht sogar der Nikolaus? \nOder Jerry, die freche Maus? \n\nNun, liebe Kinder, sagt geschwind, \nwer bringt die Gaben jedem Kind? \nSchreit es alle laut heraus: \nWer kommt heut' zu uns ins Haus? \n\nEs ist der Weihnachtsmann.", img: "assets/doors/24a.png" }
+];
+
+/* ========== Weihnachtsgeschichte für das Buch (Santa Hupsi) – Bilder weiterhin möglich ==========*/
+const STORY = [
+  { day: 1, title: "Der verschwundene Stern", text: "Am Nordpol war es still und kalt. Santa Hupsi stand vor seinem großen Schlitten und blickte zum Himmel. Doch der große Weihnachtsstern, der ihm jedes Jahr den Weg zeigte, war verschwunden. Ohne ihn konnte er nicht starten. Die Elfen rannten aufgeregt umher. „Wer hat den Stern gestohlen?“ rief einer. Santa Hupsi strich sich über den Bart und sagte: „Wir müssen ihn finden – bevor die Nacht des Heiligen Abends kommt.“", img: "assets/image1.png" },
+  { day: 2, title: "Die kleine Spur", text: "Im tiefen Schnee entdeckten die Elfen eine winzige Fußspur. Sie war viel zu klein für einen Erwachsenen und roch ganz leicht nach Lebkuchen. „Das muss Knuddel gewesen sein“, murmelte ein alter Elf. Knuddel, der freche Kobold, liebte Streiche über alles. Doch würde er wirklich den Stern stehlen? Santa Hupsi schickte die mutigsten Helfer auf die Suche. Die Reise begann.", img: "assets/image2.png" },
+  { day: 3, title: "Verdacht auf Knuddel", text: "„Das war bestimmt der freche Kobold Knuddel!“ rief ein junger Elf. Knuddel war bekannt dafür, Dinge zu verstecken und dann zu lachen. Doch diesmal schien es ernster. Die Spur führte in den dunklen Tannenwald. Dort huschte etwas zwischen den Bäumen. „Hallo?“ rief jemand. Keine Antwort – nur ein leises Kichern, das im Wind verwehte.", img: "assets/image3.png" },
+  { day: 4, title: "Die Reise beginnt", text: "Santa Hupsi gab den Suchern einen magischen Kompass mit. „Folgt der Spur und findet den Stern“, sagte er. „Die Reise beginnt heute.“ Die Gruppe machte sich auf den Weg. Der Schnee knirschte unter ihren Füßen, und die Sterne am Himmel schienen zuzusehen. Niemand wusste, was sie erwartete.", img: "assets/image4.png" },
+  { day: 5, title: "Im dunklen Wald", text: "Im dunklen Tannenwald war es still. Nur das Knacken von Ästen und das leise Rascheln im Unterholz. Plötzlich huschte etwas zwischen den Bäumen. „Hallo?“ rief der Anführer der Sucher. Keine Antwort. Nur ein leises Kichern, das wie ein Echo durch den Wald hallte. Die Gruppe hielt enger zusammen.", img: "assets/image5.png" },
+  { day: 6, title: "Der Nikolaus erscheint", text: "Heute war Nikolaustag. Plötzlich stand der Nikolaus selbst vor den Suchern. Sein Mantel glänzte im Mondlicht. „Ich habe gehört, der Stern ist weg“, sagte er freundlich. „Nehmt dieses Licht mit – es zeigt euch den Weg, wenn die Dunkelheit zu groß wird.“ Er reichte ihnen eine kleine Laterne, die von innen warm leuchtete.", img: "assets/image6.png" },
+  { day: 7, title: "Das Rätsel am Baum", text: "Das Licht der Laterne führte zu einem alten, knorrigen Baum. An der Rinde stand ein Rätsel in goldenen Buchstaben:\n„Ich leuchte, aber bin kein Feuer.\nIch bin rund, aber kein Ball.\nWas bin ich?“\nDie Sucher rieten hin und her. Als sie die richtige Antwort fanden – ein Stern – öffnete sich ein verborgener Pfad.", img: "assets/image7.png" },
+  { day: 8, title: "Ein neuer Hinweis", text: "Kaum war das Rätsel gelöst, erschien ein neuer Hinweis auf einem Blatt, das vom Baum fiel:\n„Der Stern ist dort, wo es am wärmsten ist –\naber nicht in einem Haus.“\nDie Gruppe überlegte. Wo konnte das sein? Im Wald? Auf einem Berg? Sie folgten dem Pfad weiter.", img: "assets/image8.png" },
+  { day: 9, title: "Der frierende Schneemann", text: "Am Waldrand stand ein frierender Schneemann. Seine Karottennase war abgefallen, und er zitterte. „Wenn ihr mir eine Karotte gebt“, sagte er mit schwacher Stimme, „verrate ich euch etwas Wichtiges!“ Die Sucher halfen natürlich sofort. Sie fanden eine frische Karotte und setzten sie ihm ein.", img: "assets/image9.png" },
+  { day: 10, title: "Das Geheimnis des Schneemanns", text: "Der Schneemann flüsterte: „Ich habe Knuddel gesehen. Er ist Richtung Lebkuchenberg gelaufen … und er hatte etwas Glitzerndes dabei!“ Die Sucher dankten ihm und eilten weiter. Der Lebkuchenberg war weit, aber jetzt hatten sie eine klare Richtung.", img: "assets/image10.png" },
+  { day: 11, title: "Der Witz-Elf", text: "Auf dem Weg zum Lebkuchenberg traf die Gruppe einen Witz-Elfen. Er hielt sie auf und fragte: „Was sagt der Weihnachtsstern, wenn er sich verlaufen hat?“ Die Sucher schauten sich an. Der Elf grinste: „‚Ich brauche dringend Orientierungshilfe!‘“ Alle mussten lachen – trotz der ernsten Lage. Der Lacher machte ihnen Mut.", img: "assets/image11.png" },
+  { day: 12, title: "Der Lebkuchenberg", text: "Der Lebkuchenberg duftete herrlich nach Zimt und Honig. Aber der Aufstieg war steil und rutschig. Immer wieder rutschte jemand ab. Nur gemeinsam, Hand in Hand und mit viel Geduld, schafften sie es nach oben. Oben angekommen atmeten sie erleichtert auf.", img: "assets/image12.png" },
+  { day: 13, title: "Die magische Tür", text: "Oben angekommen standen sie vor einer magischen Tür. Sie öffnete sich nur, wenn man zehn Hampelmänner machte. „Probier es aus – es wärmt richtig schön!“ rief jemand. Alle machten mit. Nach dem zehnten Sprung glühte die Tür auf und öffnete sich knarrend.", img: "assets/image13.png" },
+  { day: 14, title: "Die Höhle", text: "Hinter der Tür lag eine Höhle. In der Mitte glitzerte etwas. Die Herzen der Sucher schlugen schneller. War das der Stern? Sie rannten näher. Doch es war nur ein Haufen Glitzerpapier. Knuddel war hier gewesen – und hatte wieder einen Streich gespielt.", img: "assets/image14.png" },
+  { day: 15, title: "Der Zettel", text: "An der Wand der Höhle hing ein kleiner Zettel. Darauf stand in ungelenker Schrift:\n„Ihr kommt mir nicht hinterher!\nDer Stern ist jetzt an einem ganz besonderen Ort.\nKnuddel“\nDie Sucher seufzten, aber gaben nicht auf. Sie kehrten um und suchten weiter.", img: "assets/image15.png" },
+  { day: 16, title: "Die Botschaft des Vogels", text: "Ein kleiner Vogel flog herbei und brachte die nächste Nachricht. Er zwitscherte:\n„Wo Kerzen leuchten und Plätzchen duften,\nwo Herzen warm und Hände helfen,\ndort wartet der Stern auf euch.“\nDie Worte klangen wie ein Gedicht. Die Sucher verstanden langsam, was gemeint sein konnte.", img: "assets/image16.png" },
+  { day: 17, title: "Eine neue Idee", text: "Plötzlich verstand jemand: „Vielleicht ist der Stern gar nicht gestohlen … vielleicht wollte Knuddel ihn nur an einen besseren Platz bringen?“ Die anderen nickten nachdenklich. Vielleicht hatte der freche Kobold eine gute Absicht gehabt. Sie beschlossen, zurück in die Stadt zu gehen.", img: "assets/image17.png" },
+  { day: 18, title: "Zurück in die Stadt", text: "Die Sucher liefen zurück in die Stadt. Überall leuchteten Fenster und Sterne an den Bäumen. Doch welcher war der richtige? Sie schauten von Haus zu Haus, von Straße zu Straße. Der echte Weihnachtsstern musste sich irgendwo verstecken.", img: "assets/image18.png" },
+  { day: 19, title: "Familienzeit", text: "Zu Hause angekommen, setzten sich die Sucher zusammen. „Vielleicht liegt der Stern dort, wo die Liebe am größten ist“, sagte jemand leise. Die Familie nickte. In der Wärme des Hauses, bei Kerzenschein und gemeinsamen Gesprächen, fühlten sie sich dem Geheimnis näher.", img: "assets/image19.png" },
+  { day: 20, title: "Der Abendspaziergang", text: "Bei einem Abendspaziergang entdeckten sie etwas Besonderes. Auf dem höchsten Baum im Park glitzte ein Stern ganz besonders hell. Er schien von innen zu leuchten und warf ein warmes Licht auf den Schnee darunter. Die Herzen der Sucher schlugen schneller.", img: "assets/image20.png" },
+  { day: 21, title: "Der echte Stern", text: "Je näher sie kamen, desto klarer wurde es: Das war er! Der echte Weihnachtsstern. Aber wie war er dort hinaufgekommen? Niemand von ihnen hätte ihn so hoch bringen können. Da erschien plötzlich eine vertraute Gestalt zwischen den Zweigen.", img: "assets/image21.png" },
+  { day: 22, title: "Knuddels Geständnis", text: "Plötzlich erschien Knuddel. Sein Gesicht war nicht frech, sondern ein wenig beschämt. „Ich wollte den Stern nur an den schönsten Platz der Welt bringen … dorthin, wo die Menschen am meisten zusammenhalten.“ Er zeigte auf die Häuser, in denen Licht brannte und Familien beisammen saßen.", img: "assets/image22.png" },
+  { day: 23, title: "Die Versöhnung", text: "Santa Hupsi kam dazu und lächelte. „Das war zwar nicht der Plan, Knuddel … aber du hattest nicht ganz unrecht. Der Stern gehört dorthin, wo er gebraucht wird – wo Liebe und Zusammenhalt sind.“ Knuddel senkte den Kopf, dann lächelte er auch. Die Versöhnung war vollkommen.", img: "assets/image23.png" },
+  { day: 24, title: "Heiligabend", text: "Frohe Weihnachten! Der Stern leuchtete wieder hell – diesmal über allen Häusern. Und Knuddel half ab jetzt offiziell bei Santa Hupsi. Die Elfen tanzten, die Glocken läuteten, und die ganze Welt schien ein wenig wärmer. Das war die schönste Weihnachtsgeschichte des Jahres – und sie endete genau dort, wo sie hingehörte: bei Liebe, Vergebung und einem strahlenden Stern.", img: "assets/image24.png" }
+];
+
+const CARD_DURATION = 90; /* ===== Wie lange soll das Türchen geöffnet bleiben ===== */
+const WAIT_MIN = 800;
+const WAIT_MAX = 2800;
+const STORE_KEY = "hupsi-advent-opened";
+const TEST_MODE = new URLSearchParams(location.search).get("test") === "1";
+const hupsiBtn     = document.getElementById("hupsiBtn");
+const statusEl     = document.getElementById("status");
+const cardOverlay  = document.getElementById("cardOverlay");
+const taskLabel    = document.getElementById("taskLabel");
+const taskText     = document.getElementById("taskText");
+const timerDisplay = document.getElementById("timerDisplay");
+const taskClose    = document.getElementById("taskClose");
+const doorsEl      = document.getElementById("doors");
+let cardTimer = null;
+let countdownInterval = null;
+let isWaiting = false;
+/* ===== Datum ===== */
+function getState() {
+  const now = new Date();
+  const m = now.getMonth() + 1, d = now.getDate();
+  if (TEST_MODE) return { mode: "test", day: 24 };
+  if (m === 12 && d <= 24) return { mode: "advent", day: d };
+  if (m === 12) return { mode: "after", day: 24 };
+  return { mode: "before", day: 0 };
+}
+function isUnlocked(n) {
+  const s = getState();
+  if (s.mode === "before") return false;
+  return n <= s.day;
+}
+function daysUntilStart() {
+  const now = new Date();
+  let year = now.getFullYear();
+  const start = new Date(year, 11, 1);
+  const today = new Date(year, now.getMonth(), now.getDate());
+  return Math.round((start - today) / 86400000);
+}
+/* ===== Gespeichert ===== */
+function loadOpened() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch (e) { return []; }
+}
+function saveOpened(list) {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(list)); } catch (e) {}
+}
+function markOpened(n) {
+  const list = loadOpened();
+  if (!list.includes(n)) { list.push(n); saveOpened(list); }
+  renderDoors();
+}
+/* ===== Türchen-Raster ===== */
+function renderDoors() {
+  const opened = loadOpened();
+  const s = getState();
+  doorsEl.innerHTML = "";
+  for (let n = 1; n <= 24; n++) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "door";
+    const unlocked = isUnlocked(n);
+    if (!unlocked) b.classList.add("locked");
+    else if (opened.includes(n)) b.classList.add("opened");
+    else if (s.mode === "advent" && n === s.day) b.classList.add("today");
+    /* Optional: eigenes kleines Bild im Button (als background-image – zuverlässiger) */
+    const doorData = DOORS[n - 1];
+    if (doorData && doorData.img) {
+      b.style.backgroundImage = "url('" + doorData.img + "')";
+    } else {
+      b.classList.add("no-img");
+    }
+    const num = document.createElement("span");
+    num.className = "door-num";
+    num.textContent = n;
+    b.appendChild(num);
+    b.addEventListener("click", () => {
+      if (isWaiting || cardOverlay.classList.contains("is-open")) return;
+      if (!unlocked) {
+        statusEl.textContent = "Türchen " + n + " ist noch verschlossen 🔒";
+        statusEl.classList.add("active");
+        return;
+      }
+      showCard(n);
+    });
+    doorsEl.appendChild(b);
+  }
+}
+/* ===== Karte ===== */
+function showMessage(label, text) {
+  taskLabel.textContent = label;
+  taskText.textContent = text;
+  openCardUI();
+}
+function showCard(n) {
+  const door = DOORS[n - 1];
+  taskLabel.textContent = "Türchen " + n + " · " + door.cat;
+  taskText.textContent = door.text;
+  markOpened(n);
+  openCardUI();
+}
+function openCardUI() {
+  timerDisplay.textContent = CARD_DURATION;
+  cardOverlay.classList.add("is-open");
+  cardOverlay.setAttribute("aria-hidden", "false");
+  statusEl.textContent = "Türchen offen – viel Freude!";
+  statusEl.classList.add("active");
+  clearTimeout(cardTimer);
+  clearInterval(countdownInterval);
+  let remaining = CARD_DURATION;
+  countdownInterval = setInterval(() => {
+    remaining--;
+    timerDisplay.textContent = remaining;
+    if (remaining <= 0) hideCard();
+  }, 1000);
+  cardTimer = setTimeout(hideCard, CARD_DURATION * 1000);
+}
+function hideCard() {
+  clearTimeout(cardTimer);
+  clearInterval(countdownInterval);
+  cardOverlay.classList.remove("is-open");
+  cardOverlay.setAttribute("aria-hidden", "true");
+  statusEl.classList.remove("active");
+  updateStatus();
+  isWaiting = false;
+  hupsiBtn.classList.remove("waiting");
+  hupsiBtn.disabled = false;
+}
+function updateStatus() {
+  const s = getState();
+  if (s.mode === "before") {
+    const t = daysUntilStart();
+    statusEl.textContent = t === 1 ? "Noch 1 Tag bis zum ersten Türchen" : "Noch " + t + " Tage bis zum ersten Türchen";
+  } else if (s.mode === "advent") {
+    statusEl.textContent = "Heute ist Türchen " + s.day;
+  } else {
+    statusEl.textContent = "Alle Türchen sind offen 🎄";
+  }
+}
+function randomWait() {
+  return Math.floor(Math.random() * (WAIT_MAX - WAIT_MIN + 1)) + WAIT_MIN;
+}
+hupsiBtn.addEventListener("click", () => {
+  if (isWaiting || cardOverlay.classList.contains("is-open")) return;
+  isWaiting = true;
+  hupsiBtn.disabled = true;
+  hupsiBtn.classList.add("waiting");
+  statusEl.textContent = "Santa Hupsi öffnet das Türchen …";
+  statusEl.classList.add("active");
+  setTimeout(() => {
+    const s = getState();
+    if (s.mode === "before") {
+      const t = daysUntilStart();
+      showMessage("Santa Hupsi sagt", "Noch ein bisschen Geduld! Der Kalender startet am 1. Dezember – das sind noch " + t + (t === 1 ? " Tag." : " Tage."));
+    } else {
+      // advent, test und after: immer das Türchen des aktuellen Tages (bzw. 24)
+      showCard(s.day);
+    }
+  }, randomWait());
+});
+taskClose.addEventListener("click", hideCard);
+/* ========== Dark Mode + sanfter Schneefall ========== */
+const themeToggle = document.getElementById("themeToggle");
+const root = document.documentElement;
+const snowContainer = document.getElementById("snow-container");
+const SNOWFLAKE_CHARS = ["❄", "❅", "❆", "·", "•"];
+const SNOW_COUNT = 28;
+function createSnowflakes() {
+  if (snowContainer.children.length > 0) return;
+  for (let i = 0; i < SNOW_COUNT; i++) {
+    const flake = document.createElement("span");
+    flake.className = "snowflake";
+    flake.textContent = SNOWFLAKE_CHARS[Math.floor(Math.random() * SNOWFLAKE_CHARS.length)];
+    const size = 0.55 + Math.random() * 1.1;
+    const left = Math.random() * 100;
+    const duration = 9 + Math.random() * 14;
+    const delay = Math.random() * 12;
+    const drift = (Math.random() - 0.5) * 80;
+    flake.style.left = left + "%";
+    flake.style.fontSize = size + "em";
+    flake.style.animationDuration = duration + "s";
+    flake.style.animationDelay = delay + "s";
+    flake.style.setProperty("--drift", drift + "px");
+    flake.style.opacity = 0.45 + Math.random() * 0.4;
+    snowContainer.appendChild(flake);
+  }
+}
+function applyTheme(theme) {
+  if (theme === "dark") {
+    root.setAttribute("data-theme", "dark");
+    themeToggle.textContent = "☀️ Light";
+    createSnowflakes();
+  } else {
+    root.removeAttribute("data-theme");
+    themeToggle.textContent = "🌙 Dark";
+  }
+  try { localStorage.setItem("hupsi-theme", theme); } catch (e) {}
+}
+let savedTheme = "light";
+try { savedTheme = localStorage.getItem("hupsi-theme") || "light"; } catch (e) {}
+applyTheme(savedTheme);
+themeToggle.addEventListener("click", () => {
+  const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  applyTheme(current === "dark" ? "light" : "dark");
+});
+/* ========== Info Modal ========== */
+const infoTrigger = document.getElementById("infoTrigger");
+const infoModal   = document.getElementById("infoModal");
+const infoClose   = document.getElementById("infoClose");
+function openInfo() { infoModal.classList.add("is-open"); infoModal.setAttribute("aria-hidden", "false"); }
+function closeInfo() { infoModal.classList.remove("is-open"); infoModal.setAttribute("aria-hidden", "true"); }
+infoTrigger.addEventListener("click", openInfo);
+infoClose.addEventListener("click", closeInfo);
+infoModal.addEventListener("click", (e) => { if (e.target === infoModal) closeInfo(); });
+/* ========== Kaffee Modal ========== */
+const coffeeTrigger = document.getElementById("coffeeTrigger");
+const coffeeModal   = document.getElementById("coffeeModal");
+const coffeeClose   = document.getElementById("coffeeClose");
+function openCoffee() { coffeeModal.classList.add("is-open"); coffeeModal.setAttribute("aria-hidden", "false"); }
+function closeCoffee() { coffeeModal.classList.remove("is-open"); coffeeModal.setAttribute("aria-hidden", "true"); }
+coffeeTrigger.addEventListener("click", openCoffee);
+coffeeClose.addEventListener("click", closeCoffee);
+coffeeModal.addEventListener("click", (e) => { if (e.target === coffeeModal) closeCoffee(); });
+/* ========== Geschichte Modal – jedes Kapitel mit eigenem Bild ========== */
+const storyTrigger = document.getElementById("storyTrigger");
+const storyModal   = document.getElementById("storyModal");
+const storyClose   = document.getElementById("storyClose");
+const storyContent = document.getElementById("storyContent");
+function buildStoryContent() {
+  let html = "";
+  STORY.forEach((chapter) => {
+    const imgSrc = chapter.img || ("assets/image" + chapter.day + ".png");
+    html += '<div class="story-chapter">';
+    html += '<div class="story-day">Kapitel ' + chapter.day + ' · ' + chapter.title + '</div>';
+    html += '<img class="story-chapter-img" src="' + imgSrc + '" alt="Kapitel ' + chapter.day + '">';
+    html += '<div class="story-text">' + chapter.text + '</div>';
+    html += '</div>';
+  });
+  storyContent.innerHTML = html;
+}
+function openStory() {
+  buildStoryContent();
+  storyModal.classList.add("is-open");
+  storyModal.setAttribute("aria-hidden", "false");
+}
+function closeStory() {
+  storyModal.classList.remove("is-open");
+  storyModal.setAttribute("aria-hidden", "true");
+}
+storyTrigger.addEventListener("click", openStory);
+storyClose.addEventListener("click", closeStory);
+storyModal.addEventListener("click", (e) => { if (e.target === storyModal) closeStory(); });
+/* Escape */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (cardOverlay.classList.contains("is-open")) hideCard();
+    else if (infoModal.classList.contains("is-open")) closeInfo();
+    else if (coffeeModal.classList.contains("is-open")) closeCoffee();
+    else if (storyModal.classList.contains("is-open")) closeStory();
+  }
+});
+/* Start */
+renderDoors();
+updateStatus();
+/* ========== Service Worker Registrierung (PWA) ========== */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then((registration) => { console.log("Service Worker registriert:", registration.scope); })
+      .catch((error) => { console.log("Service Worker Registrierung fehlgeschlagen:", error); });
+  });
+}
+</script></script>
+</body>
+</html>
