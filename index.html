@@ -192,8 +192,8 @@
   }
   /* Hupsi Button */
   .hupsi-btn {
-    width: min(280px, 50vw);
-    height: min(280px, 50vw);
+    width: min(250px, 48vw);
+    height: min(250px, 48vw);
     border: 6px solid rgba(255,255,255,0.85);
     border-radius: 50%;
     background: linear-gradient(145deg, var(--pink), var(--purple));
@@ -386,9 +386,7 @@
    ========================================= */
  @media screen and (max-width: 400px) and (orientation: portrait) {
     .star {
-        margin-top: -376px;
-        margin-left: 28%;
-        transform: translateX(-50%);
+    display: none;                    /* Stern ausblenden */
     }
 }	
 
@@ -415,7 +413,7 @@
    ========================================= */
 @media screen and (min-width: 901px) and (max-width: 1400px) {
     .star {
-        top: 440px;
+        top: 420px;
         left: 39%;
         transform: translateX(-50%);
         font-size: 44px;
@@ -426,7 +424,7 @@
    ========================================= */
 @media screen and (min-width: 1401px) {
     .star {
-        top: 470px;
+        top: 460px;
         left: 42%;
         transform: translateX(-50%);
         font-size: 48px;
