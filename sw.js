@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "santahupsi-v3";
+const CACHE = "santahupsi-v4";
 const FILES = [
   "./",
   "./index.html",

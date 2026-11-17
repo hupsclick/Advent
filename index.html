@@ -133,18 +133,19 @@
   .btn-info   { background: var(--sky); color: #fff; }
   .btn-coffee { background: var(--yellow); color: #515354; }
   .btn-theme  { background: var(--purplem); color: #76797a; }
-  /* ===== Main ===== */
-  .page-body {
-    flex: 1;
+ 
+/* ===== Main ===== */
+.page-body {
+    flex: 0 0 auto;              /* Wichtig: keinen freien Platz auffüllen */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 18px 16px 28px;
+    padding: 28px 26px 18px;      /* Unteren Abstand verkleinert */
     gap: 20px;
-  }
+}
   .intro { text-align: center; max-width: 380px; color: var(--advent);}
-  .intro h1 { font-size: clamp(1.55rem, 5.5vw, 2rem); font-weight: 800; margin-bottom: 6px;
+  .intro h1 { font-size: clamp(1.55rem, 5.5vw, 2rem); font-weight: 800; margin-bottom: 30px;
    text-shadow: -2px -2px 1px #edf0ff, 2px 2px 2px #0b6623;
    display: flex; align-items: center; justify-content: center; gap: 0.25em; flex-wrap: wrap; }
   .intro h1 span {
@@ -153,7 +154,7 @@
     background-clip: text;
     color: transparent;
   }
-  .intro p { font-size: 0.92rem; color: var(--text-softi); line-height: 1.45; }
+  .intro p { font-size: 0.72rem; color: var(--text-softi); line-height: 1.45; }
   [data-theme="dark"] .intro p { color: var(--text-soft); }
   /* Flackernde Kerze (SVG) */
   .candle-svg {
@@ -413,10 +414,7 @@
    ========================================= */
 @media screen and (min-width: 901px) and (max-width: 1400px) {
     .star {
-        top: 420px;
-        left: 39%;
-        transform: translateX(-50%);
-        font-size: 44px;
+    display: none;                    /* Stern ausblenden */
     }
 }
 /* =========================================
@@ -424,38 +422,55 @@
    ========================================= */
 @media screen and (min-width: 1401px) {
     .star {
-        top: 460px;
+        top: 445px;
         left: 42%;
         transform: translateX(-50%);
         font-size: 48px;
     }
 }
 	
-  /* ===== Footer ===== */
-  footer { text-align: center; padding: 10px 16px 16px; font-size: 0.7rem; letter-spacing: 4px;
-  color: var(--text-softer); text-shadow: -1px -1px 1px #edf0ff, 1px 1px 1px #0b6623;opacity: 0.95; }
-  /* ===== Geschichten-Button (zwischen Türen und Footer) ===== */
-  .story-btn-wrap {
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 10px 16px 8px;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--text-softer);
+    text-shadow: -1px -1px 1px #edf0ff, 1px 1px 1px #0b6623;
+    opacity: 0.95;
+}
+
+/* ===== Geschichten-Button ===== */
+.story-btn-wrap {
     display: flex;
     justify-content: center;
-    padding: 8px 16px 4px;
-  }
-  .story-btn {
+    padding: 2px 16px 2px;
+    margin-top: 0;
+}
+
+.story-btn {
     border: none;
     background: transparent;
     cursor: pointer;
     padding: 0;
     transition: transform 0.2s;
-  }
-  .story-btn:hover { transform: scale(1.06); }
-  .story-btn:active { transform: scale(0.96); }
-  .story-btn img {
+}
+
+.story-btn:hover {
+    transform: scale(1.06);
+}
+
+.story-btn:active {
+    transform: scale(0.96);
+}
+
+.story-btn img {
     display: block;
-    width: min(72px, 12vw);    /* ===== Bild Größe von assets/geschichte.png festlegen ===== */
+    width: min(72px, 12vw);
     height: auto;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  }
+}
   /* ===== Modals ===== */
   .modal-overlay {
     position: fixed;
