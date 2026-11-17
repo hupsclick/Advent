@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "santahupsi-v1";
+const CACHE = "santahupsi-v2";
 const FILES = [
   "./",
   "./index.html",
@@ -7,7 +7,7 @@ const FILES = [
   "./assets/icon-192.png",
   "./assets/icon-512.png",
   "./assets/icon.ico",
-  "./assets/hupsisagt.png"
+  "./assets/hupsi.png"
 ];
 
 self.addEventListener("install", (event) => {
